@@ -97,7 +97,7 @@ Tlf. $phone
 </div>
 
 <div class="floaty">
-<h2>Medlems type [<a href="/hal/account/type">Ret</a>]</h2>
+<h2>Medlemstype [<a href="/hal/account/type">Ret</a>]</h2>
 <p>$memberType ($monthlyFee kr/måned)</p>
 </div>
 
@@ -119,21 +119,21 @@ Tlf. $phone
 	    $status = qq'OK';
 	    $okCount++;
 	} else {
-	    $status = qq'Mangler PIN kode'; 
+	    $status = qq'Mangler PIN-kode'; 
 	    $noPin = qq'/hal/account/rfid/$id';
 	}
 
-	$html .= qq'<li>RFID nøgle <a href="/hal/account/rfid/$id">$rfid [$status]</a></li>';
+	$html .= qq'<li>RFID-nøgle <a href="/hal/account/rfid/$id">$rfid [$status]</a></li>';
     }
     $rr->finish;
 
     if ($doorAccess) {
 	
 	if ($okCount) {
-	    $html .= '<li>Du kan låse døren til lokalerne op med din RFID og PIN kode</li>';
+	    $html .= '<li>Du kan låse døren til lokalerne op med din RFID og PIN-kode</li>';
 
 	} elsif ($noPin) {
-	    $html .= qq'<li>Du kunne låse døren til lokalerne op med din RFID, men du mangler <a href="$noPin">at vælge en pin kode</a>.</li>';
+	    $html .= qq'<li>Du kunne låse døren til lokalerne op med din RFID, men du mangler <a href="$noPin">at vælge en PIN-kode</a>.</li>';
 	    
 	} else {
 	    $html .= '<li>Du kunne låse døren til lokalerne op, hvis ellers du havde en RFID nøgle, kontakt <a href="mailto:kassereren@osaa.dk">kassereren@osaa.dk</a></li>';	    
