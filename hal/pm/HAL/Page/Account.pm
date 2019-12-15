@@ -186,14 +186,19 @@ Tlf. $phone
 	    my $delta  = $source_id == $account_id ? $amount : -$amount;
 
 	    $sum += $delta;
+        my $created_formatted = POSIX::strftime("%Y-%m-%d %H:%M", $created);
+		my $delta_formatted = sprintf("%.2f", $delta);
+		my $sum_formatted = sprintf("%.2f", $sum);
 
-	    push @table, [$tid, $created, $comment, $other, $delta, $sum];
+	    push @table, [$tid, $created_formatted, $comment, $other, $delta_formatted, $sum_formatted];
 	}
 	$tx->finish;
 
 	@table = reverse @table;
 
-	$html .= qq'<h2>$typeName: $accountName - Saldo: $sum</h2>';
+	my $sum_formatted = sprintf("%.2f", $sum);
+
+	$html .= qq'<h2>$typeName: $accountName - Saldo: $sum_formatted</h2>';
 	$html .= "<table><th>ID</th><th>Dato</th><th>Transaktion</th><th>Fra/Til konto</th><th>Beløb</th><th>Saldo</th>\n";
 	my $count = 0;
 	for my $r (@table) {
